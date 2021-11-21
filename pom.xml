@@ -13,5 +13,6 @@
     <module>chain-responsability</module>
     <module>template-method</module>
     <module>state</module>
+    <module>command</module>
   </modules>
 </project>

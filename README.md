@@ -67,3 +67,14 @@ representa todos os estados contento métodos concretos para auxiliar na transi�
   </br>
   <img src="https://media.discordapp.net/attachments/590682723870310410/911723336059486218/DepoisSate.jpg" alt="Depois do State">
 </p>
+
+## Command Handlers
+
+Auxilia na implementação de funcionalidades permitindo que essa implementação seja independente do mecanismo de apresentação I/O.
+
+### Depois Command Handlers
+
+<p align="center">
+  </br>
+  <img src="https://media.discordapp.net/attachments/590682723870310410/912092864551485440/Captura_de_tela_2021-11-21_183153.jpg" alt="Depois do Command Handlers">
+</p>
