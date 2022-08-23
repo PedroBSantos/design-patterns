@@ -13,7 +13,7 @@ public class ConnectionPool {
     private SQLConnectionFactory connectionFactory;
     private List<ManagmedConnection> connections;
     private int poolSize;
-    private static ConnectionPool connectionPool;
+    private static volatile ConnectionPool connectionPool;
 
     private ConnectionPool(int poolSize, SQLConnectionFactory connectionFactory, String connectionString) {
         this.poolSize = poolSize;
@@ -48,15 +48,18 @@ public class ConnectionPool {
     }
 
     public static ConnectionPool getInstance(int poolSize, DatabaseType type, String connectionString) {
-        if (ConnectionPool.connectionPool != null) {
-            return ConnectionPool.connectionPool;
+        if (ConnectionPool.connectionPool == null) {
+            synchronized (ConnectionPool.class) {
+                if (ConnectionPool.connectionPool == null) {
+                    if (poolSize <= 0) {
+                        throw new RuntimeException("Initial pool size must be equal or greater than 1");
+                    }
+                    var connectionFactory = SQLConnectionFactory.getFactory(type);
+                    ConnectionPool.connectionPool = new ConnectionPool(poolSize, connectionFactory, connectionString);
+                    ConnectionPool.connectionPool.initializePool();
+                }
+            }
         }
-        if (poolSize <= 0) {
-            throw new RuntimeException("Initial pool size must be equal or greater than 1");
-        }
-        var connectionFactory = SQLConnectionFactory.getFactory(type);
-        ConnectionPool.connectionPool = new ConnectionPool(poolSize, connectionFactory, connectionString);
-        ConnectionPool.connectionPool.initializePool();
         return ConnectionPool.connectionPool;
     }
 }
