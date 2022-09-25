@@ -1,6 +1,6 @@
 # command
 
-Encapsular a chamada de métodos para não adicionar métodos desnecessários a uma interface. A chamada ao método é encapsulada em um objeto
+A chamada ao método é encapsulada em um objeto
 contendo todos os dados necessários para que seja gerado algum resultado. Faz com que o invocador não precise saber qual método do receptor chamar
 para executar o comando. Esta ação está encapsulada dentro do comando que sabe qual método do receptor chamar. O objeto Command representa a parametrização
 a chamada de um método. Os atributos deste objeto são os parametros que serão passados para o receptor que também é um atributo. Com isso o método execute da interface
