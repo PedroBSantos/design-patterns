@@ -1,11 +1,15 @@
 # command
 
-A chamada ao método é encapsulada em um objeto
-contendo todos os dados necessários para que seja gerado algum resultado. Faz com que o invocador não precise saber qual método do receptor chamar
-para executar uma operação. Esta ação está encapsulada dentro do comando que sabe qual método do receptor invocar. Os atributos deste objeto são os parametros que serão passados para o método a ser chamado no receptor. Com isso o método execute da interface
-Command não precisa receber os parametros que serão passados para o método do receptor. A vantagem deste padrão está na capacidade de desconectar o invocador de um método do seu receptor.
-Também é possível ter um comportamento mais lazy em relação a execução do método, pois podemos escolher quando o comando será executado e, em alguns casos, desfazer o que foi feito. Nesse padrão temos o Invocador e o Receptor. O invocador usa comandos para realizar ações no receptor, porém
-o invocador não está acoplado ao receptor, na verdade ele nem sabe quem irá responder a sua solicitação.</br>
+Nesse padrão temos o Invocador e o Receptor. O invocador usa comandos para realizar ações no receptor, porém
+o invocador não está acoplado ao receptor, na verdade ele nem sabe quem irá responder a sua solicitação.
+Como o invocador não conhece mais (está desconectado) o tipo concreto do objeto que expõe o método que está invocando, o invocador pode "executar" métodos de objetos
+de diferentes tipos sem precisar saber qual o método o receptor está executando. O invocador apenas precisa saber que para invocar o método no objeto receptor é necessário chamar
+o método execute definido na interface command. Com isso, podemos dizer que o invocador pode ser parametrizado com diversos comandos, ele não se restringe a invocar
+comandos destinados ao mesmo tipo de objeto. Com isso, ao parametrizer um invocador com vários comandos podemos:
+
+- Adiar para tempo de execução qual método no receptor o invocador irá chamar.
+- Executar comandos destinados a diferentes tipos de objetos em tempo de execução.
+</br>
 
 ## macrocommand
 
