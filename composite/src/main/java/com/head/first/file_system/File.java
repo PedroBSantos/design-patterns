@@ -23,4 +23,9 @@ public class File extends FileSystem {
     public Iterator<FileSystem> createIterator() {
         return new FileIterator();
     }
+
+    @Override
+    public String getName() {
+        return name;
+    }
 }

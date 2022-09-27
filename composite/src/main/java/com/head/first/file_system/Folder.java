@@ -8,6 +8,7 @@ public class Folder extends FileSystem {
 
     private String name;
     private List<FileSystem> children;
+    private Iterator<FileSystem> iterator;
 
     public Folder(String name) {
         this.name = name;
@@ -37,6 +38,14 @@ public class Folder extends FileSystem {
 
     @Override
     public Iterator<FileSystem> createIterator() {
-        return new FolderIterator(this.children.iterator());
+        if (this.iterator == null) {
+            this.iterator = new FolderIterator(this.children.iterator());
+        }
+        return this.iterator;
+    }
+
+    @Override
+    public String getName() {
+        return name;
     }
 }

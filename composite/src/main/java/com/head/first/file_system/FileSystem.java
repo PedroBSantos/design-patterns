@@ -14,5 +14,9 @@ public abstract class FileSystem {
         throw new UnsupportedOperationException();
     }
 
+    public String getName() {
+        throw new UnsupportedOperationException();
+    }
+
     public abstract Iterator<FileSystem> createIterator();
 }

@@ -7,6 +7,7 @@ import java.util.List;
 public class Caixa extends Pedido {
 
     private List<Pedido> pedidos;
+    private Iterator<Pedido> iterator;
 
     public Caixa() {
         this.pedidos = new ArrayList<>();
@@ -36,6 +37,9 @@ public class Caixa extends Pedido {
 
     @Override
     public Iterator<Pedido> createIterator() {
-        return new CompositeIterator(this.pedidos.iterator());
+        if (this.iterator == null) {
+            this.iterator = new CompositeIterator(this.pedidos.iterator());
+        }
+        return this.iterator;
     }
 }
